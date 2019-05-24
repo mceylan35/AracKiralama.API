@@ -25,16 +25,55 @@ namespace AracKiralama.API.Controllers
         [Route("aygunkm")]
         public IHttpActionResult AracYaptigiGunlukKm()
         {
-           var yapilankm=sirketManager.AracAylikGunlukYaptigiKm();
-            return Ok(yapilankm);
+            try
+            {
+                using (var sirketManager=new SirketManager(new EfSirketRepository()))
+                {
+                    return Ok(sirketManager.AracAylikGunlukYaptigiKm());
+                }
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+         
         }
         [HttpGet]
-        [Route("aylikkazanc")]
+        [Route("aylikgelir")]
         public IHttpActionResult AylikKiraKazanc()
         {
-            
-           var aylikgelir= aracManager.AylikKiraKazanc();
-            return Ok(aylikgelir);
+            try
+            {
+                using (var aracManager=new AracManager(new EfAracRepository()))
+                {
+                    return Ok(aracManager.AylikKiraKazanc());
+                }
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+         
+        }
+        [HttpGet]
+        [Route("gunkiraort")]
+        public IHttpActionResult GunlukOrtKiralanArac()
+        {
+            try
+            {
+                using (var kiralikManager=new KiralikManager(new EfKiralikRepository()))
+            {
+                return Ok(kiralikManager.GunlukKiralananOrtalamaAracSayisi());
+            }
+
+          
+
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+
         }
 
      
