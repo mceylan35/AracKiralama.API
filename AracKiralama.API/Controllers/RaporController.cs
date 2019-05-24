@@ -29,6 +29,8 @@ namespace AracKiralama.API.Controllers
             {
                 using (var sirketManager=new SirketManager(new EfSirketRepository()))
                 {
+                    
+
                     return Ok(sirketManager.AracAylikGunlukYaptigiKm());
                 }
             }
@@ -75,8 +77,24 @@ namespace AracKiralama.API.Controllers
             }
 
         }
+        [HttpGet]
+        [Route("kmasan")]
+        public IHttpActionResult GunlukKmAsanlarOrt()
+        {
+            try
+            {
+                using (var aracManager=new AracManager(new EfAracRepository()))
+                {
+                    return Ok(aracManager.GunlukKmAsanlarOrt());
+                }
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+        }
 
-     
+
 
 
 
