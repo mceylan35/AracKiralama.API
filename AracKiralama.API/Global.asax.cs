@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,11 +14,17 @@ namespace AracKiralama.API
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+
+           // AutoMapper.Mapper.Initialize(cfg => cfg.AddProfile<AutomapperProfile>());
+            var formatters = GlobalConfiguration.Configuration.Formatters;
+            formatters.Remove(formatters.XmlFormatter);
+
+
+            //  GlobalConfiguration.Configuration.Formatters.Clear();
+            //  GlobalConfiguration.Configuration.Formatters.Add(new JsonNetFormatter(jsonSerializerSettings));
+
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
         }
     }
 }

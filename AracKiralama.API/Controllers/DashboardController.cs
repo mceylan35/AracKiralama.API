@@ -6,12 +6,11 @@ using System.Web.Mvc;
 
 namespace AracKiralama.API.Controllers
 {
-    public class HomeController : Controller
+    public class DashboardController : Controller
     {
+        // GET: Dashboard
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
             return View();
         }
     }
